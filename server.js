@@ -1,5 +1,4 @@
-const app = require('express')();
-
+const server = require('express')();
 const db = require('./src/db');
 const config = require('./src/config');
 const debug = require('./src/helpers/debugger');
@@ -10,14 +9,10 @@ if (config.appEnv !== 'test') {
     .catch(err => debug('db', err.message));
 }
 
-app.get('/health', (req, res) => {
-  res.json({
-    result: 'OK',
-  });
-});
+require('./src/routes')(server);
 
-app.listen(config.appPort, async () => {
+server.listen(config.appPort, async () => {
   debug('entrypoint', `Server running on port: ${config.appPort}`);
 });
 
-module.exports = app;
+module.exports = server;
