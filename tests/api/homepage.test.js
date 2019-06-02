@@ -7,12 +7,22 @@ chai.use(chaiHttp);
 const setup = require('../setup');
 const server = require('../../server');
 
-describe('Tests example', () => {
+describe('Health test (Example)', () => {
   setup();
-  it('should GET mainpage message', (done) => {
+  it('should GET health 401 error', (done) => {
     chai
       .request(server)
       .get('/health')
+      .end((err, res) => {
+        res.status.should.equal(401);
+        done();
+      });
+  });
+  it('should GET health ok', (done) => {
+    chai
+      .request(server)
+      .get('/health')
+      .set('Authorization', 'health-check')
       .end((err, res) => {
         res.status.should.equal(200);
         res.body.result.toLowerCase().should.equal('ok');
