@@ -1,4 +1,5 @@
 const server = require('express')();
+
 const db = require('./src/db');
 const config = require('./src/config');
 const debug = require('./src/helpers/debugger');
