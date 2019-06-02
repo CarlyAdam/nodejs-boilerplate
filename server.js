@@ -12,6 +12,12 @@ if (config.appEnv !== 'test') {
 
 require('./src/routes')(server);
 
+server.use('*', (req, res) => {
+  res.status(404).send({
+    error: 'Not found',
+  });
+});
+
 server.listen(config.appPort, async () => {
   debug('entrypoint', `Server running on port: ${config.appPort}`);
 });
