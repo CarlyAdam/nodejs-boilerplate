@@ -1,12 +1,11 @@
 const app = require('express')();
-const debug = require('debug')('app:entrypoint');
-
-const config = require('./src/config');
 
 const db = require('./src/db');
+const config = require('./src/config');
+const debug = require('./src/helpers/debugger');
 
 app.listen(config.appPort, async () => {
-  debug(`Server running on port: ${config.appPort}`);
+  debug('entrypoint', `Server running on port: ${config.appPort}`);
 
   try {
     await db.connect(config.dbUrl);
