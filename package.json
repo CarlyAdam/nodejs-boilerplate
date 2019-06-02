@@ -4,19 +4,22 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-mocha": "^5.3.0",
     "mocha": "^6.1.4",
     "mongodb-memory-server": "^5.1.2",
+    "mongodb-memory-server-global": "^5.1.2",
     "nodemon": "^1.19.1",
     "should": "^13.2.3"
   },
   "scripts": {
     "dev": "./run.sh",
     "test:unit": "./test.sh unit",
-    "test:integration": "./test.sh integration"
+    "test:api": "./test.sh api"
   },
   "dependencies": {
     "debug": "^4.1.1",

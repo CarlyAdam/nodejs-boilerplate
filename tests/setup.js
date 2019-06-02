@@ -1,10 +1,10 @@
-const { MongoMemoryServer } = require('mongodb-memory-server');
+const { MongoMemoryServer } = require('mongodb-memory-server-global');
 
 const db = require('../src/db');
 
 let mongoServer;
 
-module.exports = (dataFactory = null, fakeDataAmount = 10) => {
+module.exports = (dataFactory = null, fakeDataAmount = 10, server) => {
   before(async () => {
     mongoServer = new MongoMemoryServer();
     try {

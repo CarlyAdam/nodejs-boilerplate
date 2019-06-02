@@ -10,6 +10,14 @@ if (config.appEnv !== 'test') {
     .catch(err => debug('db', err.message));
 }
 
+app.get('/health', (req, res) => {
+  res.json({
+    result: 'OK',
+  });
+});
+
 app.listen(config.appPort, async () => {
   debug('entrypoint', `Server running on port: ${config.appPort}`);
 });
+
+module.exports = app;
