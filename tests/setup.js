@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
 const { MongoMemoryServer } = require('mongodb-memory-server');
+
+const db = require('../src/db');
 
 let mongoServer;
 
@@ -8,7 +9,7 @@ module.exports = (dataFactory = null, fakeDataAmount = 10) => {
     mongoServer = new MongoMemoryServer();
     try {
       const connectionString = await mongoServer.getConnectionString();
-      await mongoose.connect(connectionString, { useNewUrlParser: true });
+      await db.connect(connectionString);
       if (dataFactory) {
         await dataFactory(fakeDataAmount);
       }
@@ -19,7 +20,7 @@ module.exports = (dataFactory = null, fakeDataAmount = 10) => {
 
   after(async () => {
     try {
-      await mongoose.disconnect();
+      await db.disconnect();
       await mongoServer.stop();
     } catch (error) {
       throw error;
