@@ -5,6 +5,8 @@ ARG app_port
 ENV APP_PORT=${app_port}
 ENV NODE_ENV=production
 
+RUN npm install pm2 -g
+
 WORKDIR /app
 
 COPY package.json .
@@ -21,4 +23,4 @@ RUN node-prune
 
 COPY . .
 
-ENTRYPOINT [ "node", "server.js" ]
+ENTRYPOINT [ "pm2-runtime", "process.yml", "--only", "APP" ]
