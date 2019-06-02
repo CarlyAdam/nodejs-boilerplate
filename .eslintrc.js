@@ -3,8 +3,10 @@ module.exports = {
     commonjs: true,
     es6: true,
     node: true,
+    mocha: true,
   },
   extends: 'airbnb-base',
+  plugins: ['mocha'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -14,5 +16,6 @@ module.exports = {
   },
   rules: {
     'no-underscore-dangle': 'off',
+    'mocha/no-exclusive-tests': 'error',
   },
 };
