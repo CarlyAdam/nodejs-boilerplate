@@ -1,0 +1,17 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      args: 
+        app_port: 3000
+    environment: 
+      - APP_NAME=boilerplate
+      - APP_SECRET=ChangeMe
+      - DB_URL=mongodb://db:27017/boilerplate
+    ports:
+      - "3000:3000"
+  db:
+    image: mongo
+    ports:
+      - "27019:27017"

@@ -1,5 +1,8 @@
 FROM node:12-alpine
 
+ARG app_port
+
+ENV APP_PORT=${app_port}
 ENV NODE_ENV=production
 
 WORKDIR /app
